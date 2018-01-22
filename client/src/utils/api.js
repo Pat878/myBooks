@@ -1,6 +1,6 @@
 module.exports = {
-  getBooks() {
-    return fetch("books").then(response => response.json());
+  getBooks(url) {
+    return fetch(url).then(response => response.json());
   },
 
   deleteBook(index) {
@@ -20,5 +20,9 @@ module.exports = {
         book
       })
     }).then(response => response.json());
+  },
+
+  getBook(url) {
+    return fetch(url).then(response => response.json());
   }
 };
