@@ -16,8 +16,8 @@ class Main extends React.Component {
                 Rails can work together.
               </p>
               <p>
-                <a className="btn btn-primary btn-lg" href="#" role="button">
-                  Learn more &raquo;
+                <a className="btn btn-primary btn-lg" href="" role="button">
+                  Add Book &raquo;
                 </a>
               </p>
             </center>
