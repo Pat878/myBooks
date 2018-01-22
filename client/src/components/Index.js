@@ -4,14 +4,14 @@ class Index extends React.Component {
   render() {
     const bookListing = this.props.books.map((book, i) => {
       return (
-        <div className="col-md-4">
-          <h2 key={book.title}>{book.title}</h2>
+        <div className="col-md-4" key={book.title}>
+          <h2>{book.title}</h2>
           <p>{book.summary}</p>
           <p>
             <a
               className="btn btn-secondary"
               role="button"
-              onClick={this.props.showBook.bind(this, i)}
+              onClick={this.props.showBookOnClick.bind(this, i)}
             >
               View details &raquo;
             </a>
