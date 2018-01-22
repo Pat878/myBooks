@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import { Router, Route, Switch } from "react-router-dom";
-import { createBrowserHistory } from "history";
+import { Router, Route, Switch, HashRouter } from "react-router-dom";
+import { createHashHistory } from "history";
+import PropTypes from "prop-types";
 
 var Routes = require("./components/Routes");
-var history = createBrowserHistory();
+var history = createHashHistory();
 var api = require("./utils/api");
 
 class App extends Component {
@@ -17,12 +18,15 @@ class App extends Component {
       author: "",
       summary: "",
       bookId: "",
-      history: createBrowserHistory()
+      history: createHashHistory(),
+      showLoading: true
     };
   }
 
   componentDidMount = () => {
-    api.getBooks().then(books => this.setState({ books: books }));
+    api
+      .getBooks("books")
+      .then(books => this.setState({ books: books, showLoading: false }));
   };
 
   handleDelete = (i, e) => {
@@ -66,12 +70,16 @@ class App extends Component {
     this.setState({ books: newState, title: "", author: "" });
   };
 
-  showBook = i => {
+  showBookOnClick = i => {
     let allBooks = this.state.books;
     let bookId = allBooks[i].id;
-    this.setState({ bookId: bookId, history: history });
+    this.setState({
+      bookId: bookId,
+      history: history
+    });
     let submissionPath = "/books/" + bookId;
     history.push(submissionPath);
+    this.showDirectBook()
   };
 
   goBack = () => {
@@ -81,7 +89,25 @@ class App extends Component {
       title: "",
       author: "",
       summary: "",
-      history: history
+      history: history,
+      showLoading: true
+    });
+  };
+
+  showDirectBook = () => {
+    let url = window.location.href;
+    let regex = /\d+/g;
+    api
+      .getBook("books/" + url.match(regex)[1])
+      .then(responseJson => this.setBook(responseJson));
+  };
+
+  setBook = responseJson => {
+    this.setState({
+      author: responseJson.author,
+      title: responseJson.title,
+      summary: responseJson.summary,
+      showLoading: false
     });
   };
 
@@ -101,12 +127,23 @@ class App extends Component {
           addAuthor={this.addAuthor}
           addTitle={this.addTitle}
           removeBook={this.removeBook}
-          showBook={this.showBook.bind(this)}
+          showBookOnClick={this.showBookOnClick.bind(this)}
           goBack={this.goBack}
+          showLoading={this.state.showLoading}
+          showDirectBook={this.showDirectBook}
         />
       </div>
     );
   }
 }
+
+App.propTypes = {
+  books: PropTypes.array.isRequired,
+  title: PropTypes.string.isRequired,
+  author: PropTypes.string.isRequired,
+  summary: PropTypes.string.isRequired,
+  bookId: PropTypes.string.isRequired,
+  history: PropTypes.func.isRequired
+};
 
 export default App;
