@@ -10,7 +10,7 @@ class Edit extends React.Component {
               <div className="card-body">
                 <form>
                   <div className="form-group">
-                    <label for="exampleInputEmail1">Title</label>
+                    <label htmlFor="InputTitle">Title</label>
                     <input
                       type="text"
                       className="form-control"
@@ -21,7 +21,7 @@ class Edit extends React.Component {
                     />
                   </div>
                   <div className="form-group">
-                    <label for="exampleInputPassword1">Author</label>
+                    <label htmlFor="InputAuthor">Author</label>
                     <input
                       type="text"
                       className="form-control"
@@ -31,7 +31,7 @@ class Edit extends React.Component {
                     />
                   </div>
                   <div className="form-group">
-                    <label for="exampleFormControlTextarea1">Summary</label>
+                    <label htmlFor="InputSummary">Summary</label>
                     <textarea
                       className="form-control"
                       id="exampleFormControlTextarea1"
