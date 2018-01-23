@@ -14,6 +14,15 @@ class BooksController < ApplicationController
     render json: @book.to_json
   end
 
+  def update
+    @book = Book.find(params["id"])
+    @book.update_attributes(book_params)
+    render json: @book.to_json
+  end
+
+  def edit
+  end
+
   def destroy
     Book.destroy(params[:id])
   end
