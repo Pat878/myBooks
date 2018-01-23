@@ -9,6 +9,19 @@ module.exports = {
     });
   },
 
+  submitUpdatedBook(book, bookId) {
+    return fetch("/books/" + bookId, {
+      method: "put",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        book
+      })
+    }).then(response => response.json());
+  },
+
   createBook(book) {
     return fetch("books", {
       method: "post",
