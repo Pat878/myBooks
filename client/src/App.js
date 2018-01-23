@@ -56,7 +56,7 @@ class App extends Component {
   addBook = () => {
     let book = { author: this.state.author, title: this.state.title };
     api
-      .createBook()
+      .createBook(book)
       .then(responseJson => {
         this.handleSubmit(responseJson);
       })
@@ -157,7 +157,7 @@ class App extends Component {
     let newState = this.state.books;
 
     for (var i = 0; i < newState.length; i++) {
-      if (newState[i].id == book.id) {
+      if (newState[i].id === book.id) {
         newState[i] = book;
       }
     }
@@ -204,12 +204,12 @@ class App extends Component {
 }
 
 App.propTypes = {
-  books: PropTypes.array.isRequired,
-  title: PropTypes.string.isRequired,
-  author: PropTypes.string.isRequired,
-  summary: PropTypes.string.isRequired,
-  bookId: PropTypes.string.isRequired,
-  history: PropTypes.func.isRequired
+  books: PropTypes.array,
+  title: PropTypes.string,
+  author: PropTypes.string,
+  summary: PropTypes.string,
+  bookId: PropTypes.string,
+  history: PropTypes.func
 };
 
 export default App;
