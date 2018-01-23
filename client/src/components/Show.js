@@ -17,15 +17,17 @@ class Show extends React.Component {
                   {this.props.author}
                 </h6>
                 <p className="card-text">
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
+                  {this.props.summary}
                 </p>
-                <a href="" className="card-link">
-                  Edit
-                </a>
-                <a href="" className="card-link">
-                  Delete
-                </a>
+                <div class="btn-group" role="group">
+                  <button
+                    className="btn btn-default"
+                    onClick={this.props.editBook}
+                  >
+                    Edit
+                  </button>
+                  <button className="btn btn-danger">Delete</button>
+                </div>
               </div>
 
               <button className="btn btn-default" onClick={this.props.goBack}>
