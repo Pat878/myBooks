@@ -6,7 +6,6 @@ class Index extends React.Component {
       return (
         <div className="col-md-4" key={book.title}>
           <h2>{book.title}</h2>
-          <p>{book.summary}</p>
           <p>
             <a
               className="btn btn-secondary"
