@@ -19,7 +19,7 @@ class Show extends React.Component {
                 <p className="card-text">
                   {this.props.summary}
                 </p>
-                <div class="btn-group" role="group">
+                <div className="btn-group" role="group">
                   <button
                     className="btn btn-default"
                     onClick={this.props.editBook}
