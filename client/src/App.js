@@ -79,7 +79,7 @@ class App extends Component {
     });
     let submissionPath = "/books/" + bookId;
     history.push(submissionPath);
-    this.showDirectBook()
+    this.showDirectBook();
   };
 
   goBack = () => {
@@ -90,7 +90,7 @@ class App extends Component {
       author: "",
       summary: "",
       history: history,
-      showLoading: true
+      showLoading: false
     });
   };
 
@@ -107,7 +107,67 @@ class App extends Component {
       author: responseJson.author,
       title: responseJson.title,
       summary: responseJson.summary,
+      bookId: responseJson.id,
       showLoading: false
+    });
+  };
+
+  createTitle = e => {
+    this.setState({ title: e.target.value });
+  };
+
+  createAuthor = e => {
+    this.setState({ author: e.target.value });
+  };
+
+  createSummary = e => {
+    this.setState({ summary: e.target.value });
+  };
+
+  editBook = () => {
+    this.showDirectBook();
+    let bookId = this.state.bookId;
+    let submissionPath = "/edit/" + bookId;
+    history.push(submissionPath);
+  };
+
+  setBookObject = () => {
+    let book = {
+      title: this.state.title,
+      author: this.state.author,
+      summary: this.state.summary
+    };
+    return book;
+  };
+
+  submitUpdatedBook = () => {
+    api
+      .submitUpdatedBook(this.setBookObject(), this.state.bookId)
+      .then(responseJson => {
+        this.handleUpdate(responseJson);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+    let submissionPath = "/";
+    history.push(submissionPath);
+  };
+
+  handleUpdate = book => {
+    let newState = this.state.books;
+
+    for (var i = 0; i < newState.length; i++) {
+      if (newState[i].id == book.id) {
+        newState[i] = book;
+      }
+    }
+
+    this.setState({
+      books: newState,
+      title: "",
+      author: "",
+      summary: "",
+      history: history
     });
   };
 
@@ -118,6 +178,7 @@ class App extends Component {
           books={this.state.books}
           title={this.state.title}
           author={this.state.author}
+          summary={this.state.summary}
           bookId={this.state.bookId}
           history={this.state.history}
           handleSubmit={this.handleSubmit}
@@ -131,6 +192,11 @@ class App extends Component {
           goBack={this.goBack}
           showLoading={this.state.showLoading}
           showDirectBook={this.showDirectBook}
+          editBook={this.editBook}
+          submitUpdatedBook={this.submitUpdatedBook}
+          createTitle={this.createTitle}
+          createAuthor={this.createAuthor}
+          createSummary={this.createSummary}
         />
       </div>
     );
