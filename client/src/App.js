@@ -10,18 +10,17 @@ var history = createHashHistory();
 var api = require("./utils/api");
 
 class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      books: [],
+  state = {
+    books: [],
+    fields: {
       title: "",
       author: "",
-      summary: "",
-      bookId: "",
-      history: createHashHistory(),
-      showLoading: true
-    };
-  }
+      summary: ""
+    },
+    bookId: "",
+    history: createHashHistory(),
+    showLoading: true
+  };
 
   componentDidMount = () => {
     api
@@ -75,6 +74,7 @@ class App extends Component {
     let bookId = allBooks[i].id;
     this.setState({
       bookId: bookId,
+      showLoading: true,
       history: history
     });
     let submissionPath = "/books/" + bookId;
@@ -104,24 +104,20 @@ class App extends Component {
 
   setBook = responseJson => {
     this.setState({
-      author: responseJson.author,
-      title: responseJson.title,
-      summary: responseJson.summary,
+      fields: {
+        author: responseJson.author,
+        title: responseJson.title,
+        summary: responseJson.summary
+      },
       bookId: responseJson.id,
       showLoading: false
     });
   };
 
-  createTitle = e => {
-    this.setState({ title: e.target.value });
-  };
-
-  createAuthor = e => {
-    this.setState({ author: e.target.value });
-  };
-
-  createSummary = e => {
-    this.setState({ summary: e.target.value });
+  updateForm = e => {
+    const fields = this.state.fields;
+    fields[e.target.name] = e.target.value;
+    this.setState({ fields });
   };
 
   editBook = () => {
@@ -132,11 +128,7 @@ class App extends Component {
   };
 
   setBookObject = () => {
-    let book = {
-      title: this.state.title,
-      author: this.state.author,
-      summary: this.state.summary
-    };
+    let book = this.state.fields;
     return book;
   };
 
@@ -176,15 +168,12 @@ class App extends Component {
       <div>
         <Routes
           books={this.state.books}
-          title={this.state.title}
-          author={this.state.author}
-          summary={this.state.summary}
+          fields={this.state.fields}
           bookId={this.state.bookId}
           history={this.state.history}
           handleSubmit={this.handleSubmit}
           handleDelete={this.handleDelete}
           addBook={this.addBook}
-          createBook={this.createBook}
           addAuthor={this.addAuthor}
           addTitle={this.addTitle}
           removeBook={this.removeBook}
@@ -194,9 +183,7 @@ class App extends Component {
           showDirectBook={this.showDirectBook}
           editBook={this.editBook}
           submitUpdatedBook={this.submitUpdatedBook}
-          createTitle={this.createTitle}
-          createAuthor={this.createAuthor}
-          createSummary={this.createSummary}
+          updateForm={this.updateForm}
         />
       </div>
     );
