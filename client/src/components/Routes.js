@@ -6,6 +6,7 @@ var Switch = require("react-router-dom").Switch;
 var Index = require("./Index");
 var Show = require("./Show");
 var Edit = require("./Edit");
+var Create = require("./Create");
 var Nav = require("./Nav");
 var Main = require("./Main");
 var Footer = require("./Footer");
@@ -17,7 +18,7 @@ class Routes extends React.Component {
       return (
         <div>
           <Nav history={this.props.history} />
-          <Main />
+          <Main createBookPath={this.props.createBookPath} />
           {this.props.showLoading ? (
             <Loading />
           ) : (
@@ -69,9 +70,25 @@ class Routes extends React.Component {
             showDirectBook={this.props.showDirectBook}
             submitUpdatedBook={this.props.submitUpdatedBook}
             updateForm={this.props.updateForm}
-            fields={this.props.fields}
           />
 
+          <Footer />
+        </div>
+      );
+    };
+
+    const CreateRoute = props => {
+      return (
+        <div>
+          <Nav />
+          <Main />
+          <Create
+            fields={this.props.fields}
+            goBack={this.props.goBack}
+            updateForm={this.props.updateForm}
+            submitNewBook={this.props.submitNewBook}
+            fieldErrors={this.props.fieldErrors}
+          />
           <Footer />
         </div>
       );
@@ -85,6 +102,7 @@ class Routes extends React.Component {
               <Route exact path={"/"} render={IndexRoute} />
               <Route path="/books/:id" render={ShowRoute} />
               <Route path="/edit/:id" render={EditRoute} />
+              <Route path="/create" render={CreateRoute} />
               <Route
                 render={function() {
                   return <p>Not Found</p>;
