@@ -1,6 +1,6 @@
 var React = require("react");
 
-const Main = () => {
+const Main = props => {
   return (
     <main role="main">
       <div className="jumbotron">
@@ -11,13 +11,16 @@ const Main = () => {
             </h1>
 
             <p>
-              myBooks is a simple example of how Create-React-App and Ruby on
-              Rails can work together.
+              myBooks is a CRUD app created with Create-React-App and Ruby on
+              Rails.
             </p>
             <p>
-              <a className="btn btn-primary btn-lg" href="" role="button">
+              <button
+                className="btn btn-primary btn-lg"
+                onClick={props.createBookPath}
+              >
                 Add Book &raquo;
-              </a>
+              </button>
             </p>
           </center>
         </div>
