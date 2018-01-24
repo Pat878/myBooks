@@ -20,14 +20,9 @@ const Nav = () => {
 
       <div className="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul className="navbar-nav mr-auto">
-          <li className="nav-item active">
-            <a className="nav-link" href="">
-              Home <span className="sr-only">(current)</span>
-            </a>
-          </li>
           <li className="nav-item">
             <a className="nav-link" href="">
-              Add Book
+              GitHub
             </a>
           </li>
         </ul>
@@ -35,7 +30,7 @@ const Nav = () => {
           <input
             className="form-control mr-sm-2"
             type="text"
-            placeholder="Search"
+            placeholder="Search for a title"
             aria-label="Search"
           />
           <button
