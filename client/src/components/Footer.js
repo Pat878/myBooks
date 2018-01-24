@@ -1,17 +1,18 @@
 var React = require("react");
 
-class Footer extends React.Component {
-  render() {
-    return (
-      <footer className="container">
+const Footer = () => {
+  return (
+    <footer className="container">
+      <center>
         <p>
+          Created by{" "}
           <a href="http://www.patmellon.com" target="_blank">
             Pat Mellon
           </a>
         </p>
-      </footer>
-    );
-  }
-}
+      </center>
+    </footer>
+  );
+};
 
 module.exports = Footer;
