@@ -16,9 +16,7 @@ class Show extends React.Component {
                 <h6 className="card-subtitle mb-2 text-muted">
                   {this.props.fields.author}
                 </h6>
-                <p className="card-text">
-                  {this.props.fields.summary}
-                </p>
+                <p className="card-text">{this.props.fields.summary}</p>
                 <div className="btn-group" role="group">
                   <button
                     className="btn btn-default"
