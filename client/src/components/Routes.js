@@ -18,10 +18,14 @@ class Routes extends React.Component {
         <div>
           <Nav history={this.props.history} />
           <Main />
-          <Index
-            books={this.props.books}
-            showBookOnClick={this.props.showBookOnClick}
-          />
+          {this.props.showLoading ? (
+            <Loading />
+          ) : (
+            <Index
+              books={this.props.books}
+              showBookOnClick={this.props.showBookOnClick}
+            />
+          )}
           <Footer />
         </div>
       );
@@ -37,9 +41,7 @@ class Routes extends React.Component {
           ) : (
             <Show
               books={this.props.books}
-              title={this.props.title}
-              author={this.props.author}
-              summary={this.props.summary}
+              fields={this.props.fields}
               bookId={this.props.bookId}
               goBack={this.props.goBack}
               showloading={this.props.showLoading}
@@ -60,17 +62,14 @@ class Routes extends React.Component {
 
           <Edit
             books={this.props.books}
-            title={this.props.title}
-            author={this.props.author}
-            summary={this.props.summary}
+            fields={this.props.fields}
             bookId={this.props.bookId}
             goBack={this.props.goBack}
             showloading={this.props.showLoading}
             showDirectBook={this.props.showDirectBook}
             submitUpdatedBook={this.props.submitUpdatedBook}
-            createTitle={this.props.createTitle}
-            createAuthor={this.props.createAuthor}
-            createSummary={this.props.createSummary}
+            updateForm={this.props.updateForm}
+            fields={this.props.fields}
           />
 
           <Footer />
