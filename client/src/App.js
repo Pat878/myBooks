@@ -17,6 +17,7 @@ class App extends Component {
       author: "",
       summary: ""
     },
+    fieldErrors: {},
     bookId: "",
     history: createHashHistory(),
     showLoading: true
@@ -44,16 +45,12 @@ class App extends Component {
     });
   };
 
-  addTitle = e => {
-    this.setState({ title: e.target.value });
-  };
+  submitNewBook = () => {
+    let book = this.state.fields;
+    let fieldErrors = this.validate(book);
+    this.setState({ fieldErrors });
+    if (Object.keys(fieldErrors).length) return;
 
-  addAuthor = e => {
-    this.setState({ author: e.target.value });
-  };
-
-  addBook = () => {
-    let book = { author: this.state.author, title: this.state.title };
     api
       .createBook(book)
       .then(responseJson => {
@@ -66,7 +63,16 @@ class App extends Component {
 
   handleSubmit = book => {
     var newState = this.state.books.concat(book);
-    this.setState({ books: newState, title: "", author: "" });
+    this.setState({
+      books: newState,
+      fields: {
+        title: "",
+        author: "",
+        summary: ""
+      }
+    });
+    let submissionPath = "/";
+    history.push(submissionPath);
   };
 
   showBookOnClick = i => {
@@ -86,11 +92,9 @@ class App extends Component {
     let submissionPath = "/";
     history.push(submissionPath);
     this.setState({
-      title: "",
-      author: "",
-      summary: "",
       history: history,
-      showLoading: false
+      showLoading: false,
+      fieldErrors: {}
     });
   };
 
@@ -156,11 +160,29 @@ class App extends Component {
 
     this.setState({
       books: newState,
-      title: "",
-      author: "",
-      summary: "",
+      fields: {},
       history: history
     });
+  };
+
+  createBookPath = () => {
+    let submissionPath = "/create";
+    history.push(submissionPath);
+    this.setState({
+      fields: {
+        title: "",
+        author: "",
+        summary: ""
+      }
+    });
+  };
+
+  validate = book => {
+    const errors = {};
+    if (!book.title) errors.title = "Title Required";
+    if (!book.author) errors.author = "Author Required";
+    if (!book.summary) errors.summary = "Summary Required";
+    return errors;
   };
 
   render() {
@@ -173,9 +195,7 @@ class App extends Component {
           history={this.state.history}
           handleSubmit={this.handleSubmit}
           handleDelete={this.handleDelete}
-          addBook={this.addBook}
-          addAuthor={this.addAuthor}
-          addTitle={this.addTitle}
+          submitNewBook={this.submitNewBook}
           removeBook={this.removeBook}
           showBookOnClick={this.showBookOnClick.bind(this)}
           goBack={this.goBack}
@@ -184,6 +204,8 @@ class App extends Component {
           editBook={this.editBook}
           submitUpdatedBook={this.submitUpdatedBook}
           updateForm={this.updateForm}
+          createBookPath={this.createBookPath}
+          fieldErrors={this.state.fieldErrors}
         />
       </div>
     );
