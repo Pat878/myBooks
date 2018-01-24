@@ -43,7 +43,7 @@ const Edit = props => {
                   />
                 </div>
               </form>
-              <div class="btn-group" role="group">
+              <div className="btn-group" role="group">
                 <button
                   href=""
                   className="btn btn-success"
