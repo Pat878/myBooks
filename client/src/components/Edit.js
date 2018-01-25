@@ -45,13 +45,14 @@ const Edit = props => {
               </form>
               <div className="btn-group" role="group">
                 <button
-                  href=""
                   className="btn btn-success"
                   onClick={props.submitUpdatedBook}
                 >
                   Update
                 </button>
-                <button className="btn btn-danger">Delete</button>
+                <button className="btn btn-danger" onClick={props.handleDelete}>
+                  Delete
+                </button>
               </div>
             </div>
 
