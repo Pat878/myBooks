@@ -1,4 +1,5 @@
 var React = require("react");
+var PropTypes = require("prop-types");
 
 const Index = props => {
   const bookListing = props.books.map((book, i) => {
@@ -26,6 +27,11 @@ const Index = props => {
       </center>
     </div>
   );
+};
+
+Index.propTypes = {
+  books: PropTypes.array.isRequired,
+  showBookOnClick: PropTypes.func.isRequired
 };
 
 module.exports = Index;
