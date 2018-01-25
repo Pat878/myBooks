@@ -29,20 +29,27 @@ class App extends Component {
       .then(books => this.setState({ books: books, showLoading: false }));
   };
 
-  handleDelete = (i, e) => {
-    var array = this.state.books;
-    var index = array[i].id;
-    api.deleteBook(index).then(this.removeBook(i, e));
+  handleDelete = () => {
+    let stateArray = this.state.books;
+    let currentBookIndex;
+    for (let i = 0; i < stateArray.length; i++) {
+      if (stateArray[i].id === this.state.bookId) {
+        currentBookIndex = i;
+      }
+    }
+    let bookToDelete = stateArray[currentBookIndex].id;
+    api.deleteBook(bookToDelete).then(this.removeBook(currentBookIndex));
   };
 
-  removeBook = (i, e) => {
-    var array = this.state.books;
+  removeBook = i => {
+    let stateArray = this.state.books;
 
     this.setState({
       books: this.state.books.filter(function(book) {
-        return book !== array[i];
+        return book !== stateArray[i];
       })
     });
+    this.goBack();
   };
 
   submitNewBook = () => {
@@ -62,7 +69,7 @@ class App extends Component {
   };
 
   handleSubmit = book => {
-    var newState = this.state.books.concat(book);
+    let newState = this.state.books.concat(book);
     this.setState({
       books: newState,
       fields: {
@@ -152,7 +159,7 @@ class App extends Component {
   handleUpdate = book => {
     let newState = this.state.books;
 
-    for (var i = 0; i < newState.length; i++) {
+    for (let i = 0; i < newState.length; i++) {
       if (newState[i].id === book.id) {
         newState[i] = book;
       }
