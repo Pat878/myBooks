@@ -17,7 +17,7 @@ class Routes extends React.Component {
     const IndexRoute = props => {
       return (
         <div>
-          <Nav history={this.props.history} />
+          <Nav />
           <Main createBookPath={this.props.createBookPath} />
           {this.props.showLoading ? (
             <Loading />
