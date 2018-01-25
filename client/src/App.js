@@ -3,7 +3,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import { Router, Route, Switch, HashRouter } from "react-router-dom";
 import { createHashHistory } from "history";
-import PropTypes from "prop-types";
+import { PropTypes } from "prop-types";
 
 var Routes = require("./components/Routes");
 var history = createHashHistory();
@@ -216,11 +216,10 @@ class App extends Component {
 
 App.propTypes = {
   books: PropTypes.array,
-  title: PropTypes.string,
-  author: PropTypes.string,
-  summary: PropTypes.string,
+  fields: PropTypes.object,
+  fieldErrors: propTypes.object,
   bookId: PropTypes.string,
-  history: PropTypes.func
+  showLoading: PropTypes.bool
 };
 
 export default App;
