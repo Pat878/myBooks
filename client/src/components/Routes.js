@@ -48,6 +48,7 @@ class Routes extends React.Component {
               showloading={this.props.showLoading}
               showDirectBook={this.props.showDirectBook}
               editBook={this.props.editBook}
+              handleDelete={this.props.handleDelete}
             />
           )}
           <Footer />
@@ -70,6 +71,7 @@ class Routes extends React.Component {
             showDirectBook={this.props.showDirectBook}
             submitUpdatedBook={this.props.submitUpdatedBook}
             updateForm={this.props.updateForm}
+            handleDelete={this.props.handleDelete}
           />
 
           <Footer />
