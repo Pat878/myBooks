@@ -24,7 +24,12 @@ class Show extends React.Component {
                   >
                     Edit
                   </button>
-                  <button className="btn btn-danger">Delete</button>
+                  <button
+                    className="btn btn-danger"
+                    onClick={this.props.handleDelete}
+                  >
+                    Delete
+                  </button>
                 </div>
               </div>
 
