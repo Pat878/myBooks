@@ -217,7 +217,7 @@ class App extends Component {
 App.propTypes = {
   books: PropTypes.array,
   fields: PropTypes.object,
-  fieldErrors: propTypes.object,
+  fieldErrors: PropTypes.object,
   bookId: PropTypes.string,
   showLoading: PropTypes.bool
 };
