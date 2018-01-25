@@ -19,7 +19,6 @@ class App extends Component {
     },
     fieldErrors: {},
     bookId: "",
-    history: createHashHistory(),
     showLoading: true
   };
 
@@ -87,8 +86,7 @@ class App extends Component {
     let bookId = allBooks[i].id;
     this.setState({
       bookId: bookId,
-      showLoading: true,
-      history: history
+      showLoading: true
     });
     let submissionPath = "/books/" + bookId;
     history.push(submissionPath);
@@ -99,7 +97,6 @@ class App extends Component {
     let submissionPath = "/";
     history.push(submissionPath);
     this.setState({
-      history: history,
       showLoading: false,
       fieldErrors: {}
     });
@@ -167,8 +164,7 @@ class App extends Component {
 
     this.setState({
       books: newState,
-      fields: {},
-      history: history
+      fields: {}
     });
   };
 
@@ -199,7 +195,6 @@ class App extends Component {
           books={this.state.books}
           fields={this.state.fields}
           bookId={this.state.bookId}
-          history={this.state.history}
           handleSubmit={this.handleSubmit}
           handleDelete={this.handleDelete}
           submitNewBook={this.submitNewBook}
