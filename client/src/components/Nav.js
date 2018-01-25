@@ -21,7 +21,7 @@ const Nav = () => {
       <div className="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul className="navbar-nav mr-auto">
           <li className="nav-item">
-            <a className="nav-link" href="">
+            <a className="nav-link" href="https://github.com/Pat878">
               GitHub
             </a>
           </li>
