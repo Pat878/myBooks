@@ -3,8 +3,8 @@ module.exports = {
     return fetch(url).then(response => response.json());
   },
 
-  deleteBook(index) {
-    return fetch("books/" + index, {
+  deleteBook(bookToDelete) {
+    return fetch("books/" + bookToDelete, {
       method: "delete"
     });
   },
