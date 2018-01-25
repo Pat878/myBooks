@@ -1,4 +1,5 @@
 var React = require("react");
+var PropTypes = require("prop-types");
 
 const Edit = props => {
   return (
@@ -65,6 +66,14 @@ const Edit = props => {
       <hr />
     </div>
   );
+};
+
+Edit.propTypes = {
+  fields: PropTypes.objectOf(PropTypes.string.isRequired),
+  goBack: PropTypes.func.isRequired,
+  handleDelete: PropTypes.func.isRequired,
+  submitUpdatedBook: PropTypes.func.isRequired,
+  updateForm: PropTypes.func.isRequired
 };
 
 module.exports = Edit;
