@@ -1,4 +1,5 @@
 var React = require("react");
+var PropTypes = require("prop-types");
 
 const Create = props => {
   return (
@@ -55,7 +56,6 @@ const Create = props => {
                 </div>
               </form>
               <button
-                href=""
                 className="btn btn-success"
                 onClick={props.submitNewBook}
               >
@@ -73,6 +73,14 @@ const Create = props => {
       <hr />
     </div>
   );
+};
+
+Create.propTypes = {
+  fields: PropTypes.objectOf(PropTypes.string),
+  fieldErrors: PropTypes.objectOf(PropTypes.string),
+  goBack: PropTypes.func.isRequired,
+  submitNewBook: PropTypes.func.isRequired,
+  updateForm: PropTypes.func.isRequired
 };
 
 module.exports = Create;
