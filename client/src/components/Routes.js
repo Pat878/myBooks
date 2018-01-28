@@ -63,12 +63,8 @@ class Routes extends React.Component {
           <Main />
 
           <Edit
-            books={this.props.books}
             fields={this.props.fields}
-            bookId={this.props.bookId}
             goBack={this.props.goBack}
-            showloading={this.props.showLoading}
-            showDirectBook={this.props.showDirectBook}
             submitUpdatedBook={this.props.submitUpdatedBook}
             updateForm={this.props.updateForm}
             handleDelete={this.props.handleDelete}
