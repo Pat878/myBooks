@@ -1,4 +1,5 @@
 var React = require("react");
+var PropTypes = require("prop-types");
 
 const Main = props => {
   return (
@@ -27,6 +28,10 @@ const Main = props => {
       </div>
     </main>
   );
+};
+
+Main.propTypes = {
+  createBookPath: PropTypes.func.isRequired
 };
 
 module.exports = Main;
