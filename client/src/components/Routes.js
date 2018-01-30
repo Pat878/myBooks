@@ -36,7 +36,7 @@ class Routes extends React.Component {
       return (
         <div>
           <Nav />
-          <Main />
+          <Main createBookPath={this.props.createBookPath}/>
           {this.props.showLoading ? (
             <Loading />
           ) : (
@@ -60,7 +60,7 @@ class Routes extends React.Component {
       return (
         <div>
           <Nav />
-          <Main />
+          <Main createBookPath={this.props.createBookPath}/>
 
           <Edit
             fields={this.props.fields}
@@ -79,7 +79,7 @@ class Routes extends React.Component {
       return (
         <div>
           <Nav />
-          <Main />
+          <Main createBookPath={this.props.createBookPath}/>
           <Create
             fields={this.props.fields}
             goBack={this.props.goBack}
