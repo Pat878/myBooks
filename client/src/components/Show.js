@@ -1,4 +1,5 @@
 var React = require("react");
+var PropTypes = require("prop-types");
 
 class Show extends React.Component {
   componentDidMount() {
@@ -44,5 +45,13 @@ class Show extends React.Component {
     );
   }
 }
+
+Show.propTypes = {
+  fields: PropTypes.objectOf(PropTypes.string).isRequired,
+  goBack: PropTypes.func.isRequired,
+  handleDelete: PropTypes.func.isRequired,
+  editBook: PropTypes.func.isRequired,
+  showDirectBook: PropTypes.func.isRequired
+};
 
 module.exports = Show;
