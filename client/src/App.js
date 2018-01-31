@@ -18,7 +18,7 @@ class App extends Component {
       summary: ""
     },
     fieldErrors: {},
-    bookId: "",
+    bookId: 0,
     showLoading: true
   };
 
@@ -218,7 +218,7 @@ App.propTypes = {
   books: PropTypes.array,
   fields: PropTypes.object,
   fieldErrors: PropTypes.object,
-  bookId: PropTypes.string,
+  bookId: PropTypes.number,
   showLoading: PropTypes.bool
 };
 
