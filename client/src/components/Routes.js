@@ -2,6 +2,7 @@ var React = require("react");
 var HashRouter = require("react-router-dom").HashRouter;
 var Route = require("react-router-dom").Route;
 var Switch = require("react-router-dom").Switch;
+var PropTypes = require("prop-types");
 
 var Index = require("./Index");
 var Show = require("./Show");
@@ -36,7 +37,7 @@ class Routes extends React.Component {
       return (
         <div>
           <Nav />
-          <Main createBookPath={this.props.createBookPath}/>
+          <Main createBookPath={this.props.createBookPath} />
           {this.props.showLoading ? (
             <Loading />
           ) : (
@@ -60,7 +61,7 @@ class Routes extends React.Component {
       return (
         <div>
           <Nav />
-          <Main createBookPath={this.props.createBookPath}/>
+          <Main createBookPath={this.props.createBookPath} />
 
           <Edit
             fields={this.props.fields}
@@ -79,7 +80,7 @@ class Routes extends React.Component {
       return (
         <div>
           <Nav />
-          <Main createBookPath={this.props.createBookPath}/>
+          <Main createBookPath={this.props.createBookPath} />
           <Create
             fields={this.props.fields}
             goBack={this.props.goBack}
@@ -113,5 +114,24 @@ class Routes extends React.Component {
     );
   }
 }
+
+Routes.propTypes = {
+  fields: PropTypes.objectOf(PropTypes.string).isRequired,
+  goBack: PropTypes.func.isRequired,
+  handleDelete: PropTypes.func.isRequired,
+  editBook: PropTypes.func.isRequired,
+  showDirectBook: PropTypes.func.isRequired,
+  books: PropTypes.array.isRequired,
+  bookId: PropTypes.number.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  submitNewBook: PropTypes.func.isRequired,
+  removeBook: PropTypes.func.isRequired,
+  showBookOnClick: PropTypes.func.isRequired,
+  showLoading: PropTypes.bool.isRequired,
+  submitUpdatedBook: PropTypes.func.isRequired,
+  updateForm: PropTypes.func.isRequired,
+  createBookPath: PropTypes.func.isRequired,
+  fieldErrors: PropTypes.objectOf(PropTypes.string).isRequired
+};
 
 module.exports = Routes;
