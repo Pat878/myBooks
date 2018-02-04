@@ -119,7 +119,7 @@ class App extends Component {
     this.setState({ fields });
   };
 
-  editBook = () => {
+  showEditBookPath = () => {
     this.showDirectBook();
     let bookId = this.state.bookId;
     let submissionPath = "/edit/" + bookId;
@@ -187,7 +187,7 @@ class App extends Component {
       fieldErrors: {}
     });
   };
-  
+
   render() {
     return (
       <div>
@@ -203,7 +203,7 @@ class App extends Component {
           goBack={this.goBack}
           showLoading={this.state.showLoading}
           showDirectBook={this.showDirectBook}
-          editBook={this.editBook}
+          showEditBookPath={this.showEditBookPath}
           submitUpdatedBook={this.submitUpdatedBook}
           updateForm={this.updateForm}
           createBookPath={this.createBookPath}
