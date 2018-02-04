@@ -93,15 +93,6 @@ class App extends Component {
     this.showDirectBook();
   };
 
-  goBack = () => {
-    let submissionPath = "/";
-    history.push(submissionPath);
-    this.setState({
-      showLoading: false,
-      fieldErrors: {}
-    });
-  };
-
   showDirectBook = () => {
     let url = window.location.href;
     let regex = /\d+/g;
@@ -188,6 +179,15 @@ class App extends Component {
     return errors;
   };
 
+  goBack = () => {
+    let submissionPath = "/";
+    history.push(submissionPath);
+    this.setState({
+      showLoading: false,
+      fieldErrors: {}
+    });
+  };
+  
   render() {
     return (
       <div>
