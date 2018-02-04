@@ -21,7 +21,7 @@ class Show extends React.Component {
                 <div className="btn-group" role="group">
                   <button
                     className="btn btn-default"
-                    onClick={this.props.editBook}
+                    onClick={this.props.showEditBookPath}
                   >
                     Edit
                   </button>
@@ -50,7 +50,7 @@ Show.propTypes = {
   fields: PropTypes.objectOf(PropTypes.string).isRequired,
   goBack: PropTypes.func.isRequired,
   handleDelete: PropTypes.func.isRequired,
-  editBook: PropTypes.func.isRequired,
+  showEditBookPath: PropTypes.func.isRequired,
   showDirectBook: PropTypes.func.isRequired
 };
 

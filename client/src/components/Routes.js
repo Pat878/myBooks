@@ -48,7 +48,7 @@ class Routes extends React.Component {
               goBack={this.props.goBack}
               showloading={this.props.showLoading}
               showDirectBook={this.props.showDirectBook}
-              editBook={this.props.editBook}
+              showEditBookPath={this.props.showEditBookPath}
               handleDelete={this.props.handleDelete}
             />
           )}
@@ -119,7 +119,7 @@ Routes.propTypes = {
   fields: PropTypes.objectOf(PropTypes.string).isRequired,
   goBack: PropTypes.func.isRequired,
   handleDelete: PropTypes.func.isRequired,
-  editBook: PropTypes.func.isRequired,
+  showEditBookPath: PropTypes.func.isRequired,
   showDirectBook: PropTypes.func.isRequired,
   books: PropTypes.array.isRequired,
   bookId: PropTypes.number.isRequired,
