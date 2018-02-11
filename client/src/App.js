@@ -7,7 +7,7 @@ import { PropTypes } from "prop-types";
 
 var Index = require("./components/Index");
 var ShowRoute = require("./components/views/ShowRoute");
-var EditRoute = require("./components/views/EditRoute");
+var Edit = require("./components/Edit");
 var CreateRoute = require("./components/views/CreateRoute");
 var Main = require("./components/Main");
 var Nav = require("./components/Nav");
@@ -236,7 +236,7 @@ class App extends Component {
               <Route
                 path="/edit/:id"
                 render={props => (
-                  <EditRoute
+                  <Edit
                     fields={this.state.fields}
                     goBack={this.goBack}
                     submitUpdatedBook={this.submitUpdatedBook}
