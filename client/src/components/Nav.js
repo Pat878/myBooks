@@ -1,11 +1,15 @@
 var React = require("react");
+var Link = require("react-router-dom").Link;
+var HashRouter = require("react-router-dom").HashRouter;
 
 const Nav = () => {
   return (
     <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-      <a className="navbar-brand" href="">
-        myBooks
-      </a>
+      <HashRouter>
+        <Link to={"/"} className="navbar-brand">
+          myBooks
+        </Link>
+      </HashRouter>
       <button
         className="navbar-toggler"
         type="button"
