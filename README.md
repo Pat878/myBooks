@@ -2,7 +2,7 @@
 
 myBooks is a CRUD app created with Create-React-App and Ruby on Rails.
 
-![Screenshot](myBooks.jpg)
+![Screenshot](https://github.com/Pat878/myBooks/blob/master/myBooks.JPG)
 
 ## What's Left to Do...
 
