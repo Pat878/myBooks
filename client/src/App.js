@@ -1,11 +1,14 @@
 import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import { Router, Route, Switch, HashRouter } from "react-router-dom";
+import { Route, Switch, HashRouter } from "react-router-dom";
 import { createHashHistory } from "history";
 import { PropTypes } from "prop-types";
 
-var Routes = require("./components/Routes");
+var IndexRoute = require("./components/views/IndexRoute");
+var ShowRoute = require("./components/views/ShowRoute");
+var EditRoute = require("./components/views/EditRoute");
+var CreateRoute = require("./components/views/CreateRoute");
 var history = createHashHistory();
 var api = require("./utils/api");
 
@@ -191,24 +194,71 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Routes
-          books={this.state.books}
-          fields={this.state.fields}
-          bookId={this.state.bookId}
-          handleSubmit={this.handleSubmit}
-          handleDelete={this.handleDelete}
-          submitNewBook={this.submitNewBook}
-          removeBook={this.removeBook}
-          showBookOnClick={this.showBookOnClick.bind(this)}
-          goBack={this.goBack}
-          showLoading={this.state.showLoading}
-          showDirectBook={this.showDirectBook}
-          showEditBookPath={this.showEditBookPath}
-          submitUpdatedBook={this.submitUpdatedBook}
-          updateForm={this.updateForm}
-          createBookPath={this.createBookPath}
-          fieldErrors={this.state.fieldErrors}
-        />
+        <HashRouter>
+          <div>
+            <Switch>
+              <Route
+                exact
+                path={"/"}
+                render={props => (
+                  <IndexRoute
+                    createBookPath={this.createBookPath}
+                    showLoading={this.state.showLoading}
+                    books={this.state.books}
+                    showBookOnClick={this.showBookOnClick}
+                  />
+                )}
+              />
+              <Route
+                path="/books/:id"
+                render={props => (
+                  <ShowRoute
+                    createBookPath={this.createBookPath}
+                    showLoading={this.state.showLoading}
+                    books={this.state.books}
+                    fields={this.state.fields}
+                    bookId={this.state.bookId}
+                    goBack={this.goBack}
+                    showDirectBook={this.showDirectBook}
+                    showEditBookPath={this.showEditBookPath}
+                    handleDelete={this.handleDelete}
+                  />
+                )}
+              />
+              <Route
+                path="/edit/:id"
+                render={props => (
+                  <EditRoute
+                    createBookPathprops={this.createBookPath}
+                    fields={this.state.fields}
+                    goBack={this.goBack}
+                    submitUpdatedBook={this.submitUpdatedBook}
+                    updateForm={this.updateForm}
+                    handleDelete={this.handleDelete}
+                  />
+                )}
+              />
+              <Route
+                path="/create"
+                render={props => (
+                  <CreateRoute
+                    createBookPathprops={this.createBookPath}
+                    fields={this.state.fields}
+                    goBack={this.goBack}
+                    updateForm={this.updateForm}
+                    submitNewBook={this.submitNewBook}
+                    fieldErrors={this.state.fieldErrors}
+                  />
+                )}
+              />
+              <Route
+                render={function() {
+                  return <p>Not Found</p>;
+                }}
+              />
+            </Switch>
+          </div>
+        </HashRouter>
       </div>
     );
   }
