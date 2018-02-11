@@ -6,9 +6,9 @@ import { createHashHistory } from "history";
 import { PropTypes } from "prop-types";
 
 var Index = require("./components/Index");
-var ShowRoute = require("./components/views/ShowRoute");
+var Show = require("./components/Show");
 var Edit = require("./components/Edit");
-var CreateRoute = require("./components/views/CreateRoute");
+var Create = require("./components/Create");
 var Main = require("./components/Main");
 var Nav = require("./components/Nav");
 var Footer = require("./components/Footer");
@@ -220,18 +220,21 @@ class App extends Component {
               />
               <Route
                 path="/books/:id"
-                render={props => (
-                  <ShowRoute
-                    showLoading={this.state.showLoading}
-                    books={this.state.books}
-                    fields={this.state.fields}
-                    bookId={this.state.bookId}
-                    goBack={this.goBack}
-                    showDirectBook={this.showDirectBook}
-                    showEditBookPath={this.showEditBookPath}
-                    handleDelete={this.handleDelete}
-                  />
-                )}
+                render={props =>
+                  this.state.showLoading ? (
+                    <Loading />
+                  ) : (
+                    <Show
+                      books={this.state.books}
+                      fields={this.state.fields}
+                      bookId={this.state.bookId}
+                      goBack={this.goBack}
+                      showDirectBook={this.showDirectBook}
+                      showEditBookPath={this.showEditBookPath}
+                      handleDelete={this.handleDelete}
+                    />
+                  )
+                }
               />
               <Route
                 path="/edit/:id"
@@ -248,7 +251,7 @@ class App extends Component {
               <Route
                 path="/create"
                 render={props => (
-                  <CreateRoute
+                  <Create
                     createBookPathprops={this.createBookPath}
                     fields={this.state.fields}
                     goBack={this.goBack}
