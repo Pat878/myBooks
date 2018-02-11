@@ -1,15 +1,10 @@
 var React = require("react");
 var Show = require("../Show");
-var Nav = require("../Nav");
-var Main = require("../Main");
-var Footer = require("../Footer");
 var Loading = require("../Loading");
 
 const ShowRoute = props => {
   return (
     <div>
-      <Nav />
-      <Main createBookPath={props.createBookPath} />
       {props.showLoading ? (
         <Loading />
       ) : (
@@ -24,7 +19,6 @@ const ShowRoute = props => {
           handleDelete={props.handleDelete}
         />
       )}
-      <Footer />
     </div>
   );
 };
