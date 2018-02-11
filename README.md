@@ -1,12 +1,14 @@
 # myBooks
 
-myBooks is a CRUD app example created with Create-React-App and Ruby on Rails.
+myBooks is a CRUD app created with Create-React-App and Ruby on Rails.
 
-## Work in Progress...
+![Screenshot](myBooks.jpg)
 
-* Need to add tests
-* Need to do final review of code
-* Need to update ReadMe
+## What's Left to Do...
+
+* Add tests for App
+* Implement Search  feature
+* Update ReadMe with installation instructions
 
 ## Built With
 
