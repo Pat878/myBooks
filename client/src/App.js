@@ -9,6 +9,9 @@ var IndexRoute = require("./components/views/IndexRoute");
 var ShowRoute = require("./components/views/ShowRoute");
 var EditRoute = require("./components/views/EditRoute");
 var CreateRoute = require("./components/views/CreateRoute");
+var Main = require("./components/Main");
+var Nav = require("./components/Nav");
+var Footer = require("./components/Footer");
 var history = createHashHistory();
 var api = require("./utils/api");
 
@@ -194,6 +197,8 @@ class App extends Component {
   render() {
     return (
       <div>
+        <Nav />
+        <Main createBookPath={this.createBookPath}/>
         <HashRouter>
           <div>
             <Switch>
@@ -202,7 +207,6 @@ class App extends Component {
                 path={"/"}
                 render={props => (
                   <IndexRoute
-                    createBookPath={this.createBookPath}
                     showLoading={this.state.showLoading}
                     books={this.state.books}
                     showBookOnClick={this.showBookOnClick}
@@ -213,7 +217,6 @@ class App extends Component {
                 path="/books/:id"
                 render={props => (
                   <ShowRoute
-                    createBookPath={this.createBookPath}
                     showLoading={this.state.showLoading}
                     books={this.state.books}
                     fields={this.state.fields}
@@ -229,7 +232,6 @@ class App extends Component {
                 path="/edit/:id"
                 render={props => (
                   <EditRoute
-                    createBookPathprops={this.createBookPath}
                     fields={this.state.fields}
                     goBack={this.goBack}
                     submitUpdatedBook={this.submitUpdatedBook}
@@ -259,6 +261,7 @@ class App extends Component {
             </Switch>
           </div>
         </HashRouter>
+        <Footer />
       </div>
     );
   }
