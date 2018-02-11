@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import { Route, Switch, HashRouter } from "react-router-dom";
+import { Route, Switch, HashRouter, Link } from "react-router-dom";
 import { createHashHistory } from "history";
 import { PropTypes } from "prop-types";
 
