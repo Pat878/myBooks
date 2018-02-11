@@ -11,43 +11,11 @@ var Main = require("./Main");
 var Footer = require("./Footer");
 var IndexRoute = require("./views/IndexRoute");
 var ShowRoute = require("./views/ShowRoute");
+var EditRoute = require("./views/EditRoute");
+var CreateRoute = require("./views/CreateRoute");
 
 class Routes extends React.Component {
   render() {
-    const EditRoute = props => {
-      return (
-        <div>
-          <Nav />
-          <Main createBookPath={this.props.createBookPath} />
-          <Edit
-            fields={this.props.fields}
-            goBack={this.props.goBack}
-            submitUpdatedBook={this.props.submitUpdatedBook}
-            updateForm={this.props.updateForm}
-            handleDelete={this.props.handleDelete}
-          />
-          <Footer />
-        </div>
-      );
-    };
-
-    const CreateRoute = props => {
-      return (
-        <div>
-          <Nav />
-          <Main createBookPath={this.props.createBookPath} />
-          <Create
-            fields={this.props.fields}
-            goBack={this.props.goBack}
-            updateForm={this.props.updateForm}
-            submitNewBook={this.props.submitNewBook}
-            fieldErrors={this.props.fieldErrors}
-          />
-          <Footer />
-        </div>
-      );
-    };
-
     return (
       <div>
         <HashRouter>
@@ -81,8 +49,32 @@ class Routes extends React.Component {
                   />
                 )}
               />
-              <Route path="/edit/:id" render={EditRoute} />
-              <Route path="/create" render={CreateRoute} />
+              <Route
+                path="/edit/:id"
+                render={props => (
+                  <EditRoute
+                    createBookPathprops={this.props.createBookPath}
+                    fields={this.props.fields}
+                    goBack={this.props.goBack}
+                    submitUpdatedBook={this.props.submitUpdatedBook}
+                    updateForm={this.props.updateForm}
+                    handleDelete={this.props.handleDelete}
+                  />
+                )}
+              />
+              <Route
+                path="/create"
+                render={props => (
+                  <CreateRoute
+                    createBookPathprops={this.props.createBookPath}
+                    fields={this.props.fields}
+                    goBack={this.props.goBack}
+                    updateForm={this.props.updateForm}
+                    submitNewBook={this.props.submitNewBook}
+                    fieldErrors={this.props.fieldErrors}
+                  />
+                )}
+              />
               <Route
                 render={function() {
                   return <p>Not Found</p>;
