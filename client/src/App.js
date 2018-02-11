@@ -5,13 +5,15 @@ import { Route, Switch, HashRouter } from "react-router-dom";
 import { createHashHistory } from "history";
 import { PropTypes } from "prop-types";
 
-var IndexRoute = require("./components/views/IndexRoute");
+var Index = require("./components/Index");
 var ShowRoute = require("./components/views/ShowRoute");
 var EditRoute = require("./components/views/EditRoute");
 var CreateRoute = require("./components/views/CreateRoute");
 var Main = require("./components/Main");
 var Nav = require("./components/Nav");
 var Footer = require("./components/Footer");
+var Loading = require("./components/Loading");
+
 var history = createHashHistory();
 var api = require("./utils/api");
 
@@ -198,20 +200,23 @@ class App extends Component {
     return (
       <div>
         <Nav />
-        <Main createBookPath={this.createBookPath}/>
+        <Main createBookPath={this.createBookPath} />
         <HashRouter>
           <div>
             <Switch>
               <Route
                 exact
                 path={"/"}
-                render={props => (
-                  <IndexRoute
-                    showLoading={this.state.showLoading}
-                    books={this.state.books}
-                    showBookOnClick={this.showBookOnClick}
-                  />
-                )}
+                render={props =>
+                  this.state.showLoading ? (
+                    <Loading />
+                  ) : (
+                    <Index
+                      books={this.state.books}
+                      showBookOnClick={this.showBookOnClick}
+                    />
+                  )
+                }
               />
               <Route
                 path="/books/:id"
