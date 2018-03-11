@@ -153,16 +153,14 @@ class App extends Component {
   };
 
   handleUpdate = book => {
-    let newState = this.state.books;
+    let index = this.state.books.map(oldBook => oldBook.id).indexOf(book.id);
 
-    for (let i = 0; i < newState.length; i++) {
-      if (newState[i].id === book.id) {
-        newState[i] = book;
-      }
-    }
+    let updatedBooks = Object.assign([], this.state.books, {
+      [index]: book
+    });
 
     this.setState({
-      books: newState,
+      books: updatedBooks,
       fields: {}
     });
   };
